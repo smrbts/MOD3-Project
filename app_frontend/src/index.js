@@ -2,25 +2,25 @@ const ASSET_ROOT = './assets'
 const rockBottom = 70
 const scoreBoard = document.querySelector("#score")
 const charachter = document.createElement("img")
-charachter.style.width = "100px"
-charachter.style.position = "absolute"
-charachter.style.left = "25px"
-charachter.style.bottom = `${rockBottom+40}px`
-charachter.src = `${ASSET_ROOT}/giphy.gif`
-document.body.append(charachter)
+character.style.width = '70px'
+character.style.position = 'absolute'
+character.style.left = '20px'
+character.style.bottom = `${rockBottom+40}px`
+character.src = `${ASSET_ROOT}/giphy.gif`
+document.body.append(character)
 
 let speed_y = 25
 let speed_x = 5
 let score = 0
 
 setInterval(function(){
-  if (parseInt(charachter.style.bottom) <= rockBottom) {
-    charachter.style.bottom = `${rockBottom}px`
+  if (parseInt(character.style.bottom) <= rockBottom) {
+    character.style.bottom = `${rockBottom}px`
   }
   else {
     speed_y = speed_y - 1
   }
-  charachter.style.bottom = `${parseInt(charachter.style.bottom)+speed_y}px`
+  character.style.bottom = `${parseInt(character.style.bottom)+speed_y}px`
   scoreBoard.innerText = `SCORE: ${Math.round(score)}`
   score = score +=0.02
 },20)
@@ -102,10 +102,10 @@ setInterval(function(){
 
 function impact(obstacle) {
 
-  let y1 = parseInt(charachter.style.bottom)
-  let y2 = y1 + parseInt(charachter.style.height)
-  let x1 = parseInt(charachter.style.left)
-  let x2 = x1 + parseInt(charachter.style.width)
+  let y1 = parseInt(character.style.bottom)
+  let y2 = y1 + parseInt(character.style.height)
+  let x1 = parseInt(character.style.left)
+  let x2 = x1 + parseInt(character.style.width)
   let oy1 = parseInt(obstacle.style.bottom)
   let oy2 = oy1 + parseInt(obstacle.style.height)
   let ox1 = parseInt(obstacle.style.left)
@@ -117,3 +117,12 @@ function impact(obstacle) {
     return false
   }
 }
+
+
+
+
+});
+
+
+
+
