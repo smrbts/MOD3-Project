@@ -1,6 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => 
 {
   const ASSET_ROOT = `./sprites`
+
+ function mainMenu()
+ {
+   
+ }
+
+
+
+
   function init() 
  {
   console.log("init scuccessfully reached")
@@ -11,35 +20,13 @@ document.addEventListener('DOMContentLoaded', () =>
  
  }
 
-const character = document.createElement('img')
-character.style.width = '70px'
-character.style.position = 'absolute'
-character.style.left = '10px'
-character.style.bottom = '85px'
-character.src = `${ASSET_ROOT}/idle.gif`
-document.body.append(character)
-obj = 
-{
-  y : 0,  // position
-  dy : 0, // speed
-  size : 20, // height
-  onGround : false,  // true if on the ground
-  drag : 0.99, // the drag is 0.01 
-}
-const grav = 0.1;
-obj.dy += grav;
-obj.y += obj.dy;
-if(obj.y + obj.size >= 150)
-{ // has hit ground
-  obj.y = 150 - obj.size;  // place on ground
-  obj.dy = 0;              // stop delta y
-  obj.onGround = true;
-}
-else{
-
-  obj.onGround = false;
-}
-
+  const character = document.createElement('img')
+    character.style.width = '70px'
+    character.style.position = 'absolute'
+    character.style.left = '10px'
+    character.style.bottom = '85px'
+    character.src = `${ASSET_ROOT}/idle.gif`
+    document.body.append(character)
 
 let direction = null
 let speed = 5
