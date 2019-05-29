@@ -152,7 +152,7 @@ let obstacleArr = [
     root: "./assets/obstacles/obstacle-2.gif",
     speed_range: [5,5],
     height_range: [rockBottom-25,rockBottom],
-    size_range: [0.5,1.5] //multiple of origininal
+    size_range: [2,4] //multiple of origininal
   },
   {
     name: "Wizard Monster",
