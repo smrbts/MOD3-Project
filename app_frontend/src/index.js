@@ -1,26 +1,40 @@
-const ASSET_ROOT = './assets'
-const rockBottom = 70
+const SPRITE_ROOT = './assets/sprites'
+const rockBottom = 40
 const scoreBoard = document.querySelector("#score")
-const charachter = document.createElement("img")
-charachter.style.width = "100px"
-charachter.style.position = "absolute"
-charachter.style.left = "25px"
-charachter.style.bottom = `${rockBottom+40}px`
-charachter.src = `${ASSET_ROOT}/giphy.gif`
-document.body.append(charachter)
+const character = document.createElement("img")
+const characterHeight = "100px"
+character.style.height = characterHeight
+character.style.position = "absolute"
+character.style.left = "100px"
+character.style.bottom = `${rockBottom+40}px`
+character.src = `${SPRITE_ROOT}/jump.png`
+document.body.append(character)
 
 let speed_y = 25
 let speed_x = 5
 let score = 0
 
 setInterval(function(){
-  if (parseInt(charachter.style.bottom) <= rockBottom) {
-    charachter.style.bottom = `${rockBottom}px`
-  }
-  else {
+  if (speed_y > 5) { //accelerating upward
+    character.src = `${SPRITE_ROOT}/jump1.png`
+    character.style.height = characterHeight
     speed_y = speed_y - 1
   }
-  charachter.style.bottom = `${parseInt(charachter.style.bottom)+speed_y}px`
+  if (speed_y == 5 ) {
+    character.src = `${SPRITE_ROOT}/mid_air.gif`
+    character.style.height = characterHeight
+    speed_y = speed_y - 1
+  }
+  if ( (speed_y < 5) && ( parseInt(character.style.bottom) > (rockBottom+20) ) ) { //weightlessness
+    speed_y = speed_y - 1
+  }
+  if ((parseInt(character.style.bottom) <= rockBottom+20) && (parseInt(character.style.bottom) != rockBottom)) { //landing
+    character.style.bottom = `${rockBottom}px`
+    character.src = `${SPRITE_ROOT}/run.gif`
+    character.style.height = characterHeight
+    speed_y = 0
+  }
+  character.style.bottom = `${parseInt(character.style.bottom)+speed_y}px`
   scoreBoard.innerText = `SCORE: ${Math.round(score)}`
   score = score +=0.02
 },20)
@@ -39,21 +53,20 @@ document.addEventListener("keydown",(e)=>{
   }
 })
 
-
 // Obstacle Animation
-function newObstacle() {
-  const OBSTACLE_ROOT = './assets/obstacles'
-  const obstacleRef = ['1','2','3']
-  let obstacle = document.createElement("img")
-  obstacle.src = `${OBSTACLE_ROOT}/obstacle-${obstacleRef[Math.floor(Math.random() * obstacleRef.length)]}.png`
 
-  obstacle.style.height = `${(Math.floor(Math.random()*200)+50)}px`
-  obstacle.style.width = `50px`
+function newObstacle() {
+  let nextUp = obstacleArr[Math.floor(Math.random() * obstacleArr.length)]
+  let obstacle = document.createElement("img")
+  obstacle.src = nextUp.root
+  let sizeRatio = Math.random() * (nextUp.size_range[1] - nextUp.size_range[0]) + nextUp.size_range[0]
+  obstacle.style.height = `${Math.floor(nextUp.size_y * sizeRatio)}px`
+  obstacle.style.width = `${Math.floor(nextUp.size_x * sizeRatio)}px`
   obstacle.style.position = "absolute"
   obstacle.style.left = `${window.innerWidth+10}px`
-  obstacle.style.bottom = `${rockBottom-30}px`
+  obstacle.style.bottom = `${Math.random() * (nextUp.height_range[1] - nextUp.height_range[0]) + nextUp.height_range[0]}px`
   obstacle.setAttribute("class","obstacle")
-  obstacle.speed = speed_x
+  obstacle.speed = Math.random() * (nextUp.speed_range[1] - nextUp.speed_range[0]) + nextUp.speed_range[0]
   document.body.append(obstacle)
 }
 
@@ -100,12 +113,14 @@ setInterval(function(){
   })
 },20)
 
+// logic to detect an impact with an obstacle
+
 function impact(obstacle) {
 
-  let y1 = parseInt(charachter.style.bottom)
-  let y2 = y1 + parseInt(charachter.style.height)
-  let x1 = parseInt(charachter.style.left)
-  let x2 = x1 + parseInt(charachter.style.width)
+  let y1 = parseInt(character.style.bottom)
+  let y2 = y1 + parseInt(character.style.height)
+  let x1 = parseInt(character.style.left)
+  let x2 = x1 + parseInt(character.style.width)
   let oy1 = parseInt(obstacle.style.bottom)
   let oy2 = oy1 + parseInt(obstacle.style.height)
   let ox1 = parseInt(obstacle.style.left)
@@ -117,3 +132,35 @@ function impact(obstacle) {
     return false
   }
 }
+
+// reference for obstacles
+
+let obstacleArr = [
+  {
+    name: "Angel Monster",
+    size_x: 122,
+    size_y: 109,
+    root: "./assets/obstacles/obstacle-1.gif",
+    speed_range: [5,5],
+    height_range: [0.2*window.innerHeight,0.8*window.innerHeight],
+    size_range: [0.5,1.5] //multiple of origininal
+  },
+  {
+    name: "Burning Ghoul Monster",
+    size_x: 57,
+    size_y: 60,
+    root: "./assets/obstacles/obstacle-2.gif",
+    speed_range: [5,5],
+    height_range: [rockBottom-25,rockBottom],
+    size_range: [0.5,1.5] //multiple of origininal
+  },
+  {
+    name: "Wizard Monster",
+    size_x: 324,
+    size_y: 264,
+    root: "./assets/obstacles/obstacle-3.gif",
+    speed_range: [5,5],
+    height_range: [rockBottom-30,rockBottom],
+    size_range: [0.5,1.5] //multiple of origininal
+  }
+]
