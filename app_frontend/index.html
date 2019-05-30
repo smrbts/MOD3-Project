@@ -12,8 +12,14 @@
     <div class="container">
       <form class="new_game_form">
         <h3>Welcome to #Insert Name Here#</h3>
-        <input type="text" name="name" value="" placeholder="Enter Gamer Tag..." class="input-text">
-        <input type="submit" name="submit" value="Start Game" class="submit">
+        <select id="select-user">
+        </select>
+        <input type="submit" name="submit" value="Start Game" class="submit" id="new-game">
+      </form>
+      <p>--- or ---</p>
+      <form class="manipulate_users">
+        <button id="edit-user">Edit Gamer</button>
+        <button id="create-new-user">New Gamer Tag</button>
       </form>
     </div>
 
@@ -21,9 +27,12 @@
   </body>
   <footer>
     <p id="score">
-       
+
     </p>
+    <script src="./src/crud-functions.js"></script>
+    <script src="./src/menu.js"></script>
     <script src="./src/index.js"></script>
+    <script src="./src/obstacles.js"></script>
     <link rel="stylesheet" href="styles.css">
   </footer>
 </html>

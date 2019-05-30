@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :find_note, only: [:update, :destroy]
+  before_action :find_user, only: [:update, :destroy]
 
   def index
     @users = User.all
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     params.permit(:gamer_tag)
   end
 
-  def find_note
+  def find_user
     @user = User.find(params[:id])
   end
 
