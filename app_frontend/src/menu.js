@@ -6,13 +6,13 @@ renderOnOpen()
 function renderOnOpen(){
   let newPage = `
     <form class="new_game_form">
-      <h3>Welcome to #Insert Name Here#</h3>
+      <h3>Welcome to Mountain Runner! </h3>
       <select id="select-user">
       </select>
       <input type="submit" name="submit" value="Start Game" class="submit" id="new-game">
     </form>
-    <p>--- or ---</p>
-    <form id="manipulate_users">
+    <br><br>
+    <form id="manipulate_users"><br><br><br>
     </form>
     `
   container.innerHTML = newPage
@@ -67,7 +67,7 @@ function renderDropDown(){
 function renderEditPage(){
   let editPage = `
     <form id="edit_user_form">
-      <h3>Welcome to #Insert Name Here#</h3>
+      <h3>Welcome to Mountain Runner! </h3>
       <select id="select-user">
       </select>
       <input type="text" placeholder="New Gamer Tag">
@@ -100,7 +100,7 @@ function renderEditPage(){
 function renderNewPage(){
   let newPage = `
     <form id="new_user_form">
-      <h3>Welcome to #Insert Name Here#</h3>
+      <h3>Welcome to Mountain Runner! </h3>
       <input type="text" placeholder="New Gamer Tag">
     </form>
     `
