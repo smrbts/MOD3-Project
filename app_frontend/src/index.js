@@ -16,11 +16,12 @@ let speed_y = 25
 let speed_x = 5
 
 document.addEventListener("keydown",(e)=>{
-  if(e.key == "ArrowUp"){
+  if(e.key == "ArrowUp" || e.key == " "){
+    e.preventDefault()
     jump()
   }
-  if(e.key =="ArrowDown"){
-    debugger
+  if(e.key =="ArrowDown" || e.key =="ArrowLeft" || e.key =="ArrowRight"){
+    e.preventDefault()
   }
 })
 
