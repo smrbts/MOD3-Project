@@ -1,12 +1,9 @@
 const SPRITE_ROOT = './assets/sprites'
-const USER_URL = 'http://localhost:3000/users'
-const SCORE_URL = 'http://localhost:3000/scores'
-let user = {}
 
 const rockBottom = 40
 const scoreBoard = document.querySelector("#score")
 const character = document.createElement("img")
-const startGame = document.querySelector(".new_game_form")
+
 const characterHeight = "100px"
 character.style.height = characterHeight
 character.style.position = "absolute"
@@ -20,7 +17,6 @@ let speed_x = 5
 
 document.addEventListener("keydown",(e)=>{
   if(e.key == "ArrowUp"){
-    console.log("jump")
     jump()
   }
   if(e.key =="ArrowDown"){
@@ -40,17 +36,11 @@ let cloudInterval = setInterval(function(){
   })
 },20)
 
-startGame.addEventListener("submit",(e) => {
-  e.preventDefault()
+// GAME START
 
-  e.target.parentElement.style.display = "none"
-  let gamerTag = e.target[0].value
-
-  fetchUser(gamerTag)
-
-  debugger
-
+function playGame(e) {
   clearInterval(playerIntervalIntro)
+  fetchUser(e.target[0].value)
   let playerInterval = setInterval(function(){
     if (speed_y > 5) { //accelerating upward
       character.src = `${SPRITE_ROOT}/jump1.png`
@@ -94,21 +84,18 @@ startGame.addEventListener("submit",(e) => {
       }
       obstacle.style.left = `${parseInt(obstacle.style.left) - obstacle.speed}px`
       if (impact(obstacle)) {
+        persistScore(user,Math.round(score))
         clearInterval(newObstacleInterval)
         clearInterval(obstacleInterval)
         clearInterval(scoreInterval)
         clearInterval(playerInterval)
-
         let gameOver = document.createElement('p')
-        scoreBoard.innerText = `SCORE: ${Math.round(score)} - You were eaten by a ${obstacle.name} - GAME OVER`
         e.target.parentElement.style.display = "block"
-        //persist score to score database
-        //redirect to login page
+        setTimeout(function(){renderGameOver(user,Math.round(score),obstacle.name)},50)
       }
     })
   },20)
-
-})
+}
 
 // Cloud Animation
 function newCloud() {
@@ -191,72 +178,3 @@ function impact(obstacle) {
     return false
   }
 }
-
-function fetchUser(gamerTag){
-  fetch(USER_URL)
-    .then((resp)=>{return resp.json()})
-    .then((data)=>{
-      user = data.find((user)=>{return user.gamer_tag == gamerTag})
-      if (user == undefined) {
-        createNewUser(gamerTag)
-      }
-    })
-}
-
-function createNewUser(gamerTag){
-  fetch(USER_URL,{
-    method: "post",
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json'
-    },
-    body: JSON.stringify({
-      gamer_tag: gamerTag
-    })
-  })
-    .then((resp)=>{return resp.json()})
-    .then((data)=>{
-      user = data
-    })
-}
-
-// reference for obstacles
-
-let obstacleArr = [
-  {
-    name: "Fire Skull",
-    size_x: 89,
-    size_y: 99,
-    root: "./assets/obstacles/fire-skull.gif",
-    speed_range: [4,7],
-    height_range: [0.2*window.innerHeight,0.8*window.innerHeight],
-    size_range: [1.5,2.0] //multiple of origininal
-  },
-  {
-    name: "Deamon",
-    size_x: 157,
-    size_y: 125,
-    root: "./assets/obstacles/deamon.gif",
-    speed_range: [3,4],
-    height_range: [0.2*window.innerHeight,0.8*window.innerHeight],
-    size_range: [1.5,2.5] //multiple of origininal
-  },
-  {
-    name: "Night-mare",
-    size_x: 119,
-    size_y: 77,
-    root: "./assets/obstacles/night-mare.gif",
-    speed_range: [5,8],
-    height_range: [rockBottom-30,rockBottom],
-    size_range: [1,2] //multiple of origininal
-  },
-  {
-    name: "Bee",
-    size_x: 37,
-    size_y: 39,
-    root: "./assets/obstacles/bee.gif",
-    speed_range: [3,4],
-    height_range: [0.2*window.innerHeight,0.8*window.innerHeight],
-    size_range: [3,4] //multiple of origininal
-  }
-]

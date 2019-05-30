@@ -1,5 +1,7 @@
 class ScoresController < ApplicationController
 
+  before_action :find_score, only: [:destroy]
+
   def index
     @scores = Score.all
     render json: @scores
@@ -14,10 +16,19 @@ class ScoresController < ApplicationController
     end
   end
 
+  def destroy
+    @score.destroy
+    render json: @users
+  end
+
   private
 
   def score_params
     params.permit(:user_id, :game_score)
+  end
+
+  def find_score
+    @score = Score.find(params[:id])
   end
 
 end
