@@ -18,7 +18,7 @@ class ScoresController < ApplicationController
 
   def destroy
     @score.destroy
-    render json: @users
+    render json: @scores
   end
 
   private

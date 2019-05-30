@@ -42,6 +42,10 @@ function playGame(e) {
   clearInterval(playerIntervalIntro)
   fetchUser(e.target[0].value)
   let playerInterval = setInterval(function(){
+    if (parseInt(character.style.bottom) > (window.innerHeight - parseInt(characterHeight))) {
+      character.style.bottom = `${window.innerHeight - parseInt(characterHeight)}px`
+      speed_y = speed_y - 1
+    }
     if (speed_y > 5) { //accelerating upward
       character.src = `${SPRITE_ROOT}/jump1.png`
       character.style.height = characterHeight
@@ -117,6 +121,10 @@ function newCloud() {
 /////////////
 
 let playerIntervalIntro = setInterval(function(){
+  if (parseInt(character.style.bottom) > (window.innerHeight - parseInt(characterHeight))) {
+    character.style.bottom = `${window.innerHeight - parseInt(characterHeight)}px`
+    speed_y = speed_y - 1
+  }
   if (speed_y > 5) { //accelerating upward
     character.src = `${SPRITE_ROOT}/jump1.png`
     character.style.height = characterHeight
@@ -154,6 +162,7 @@ function newObstacle() {
   obstacle.style.left = `${window.innerWidth+10}px`
   obstacle.style.bottom = `${Math.random() * (nextUp.height_range[1] - nextUp.height_range[0]) + nextUp.height_range[0]}px`
   obstacle.name = nextUp.name
+  obstacle.target_ratio = nextUp.target_ratio
   obstacle.setAttribute("class","obstacle")
   obstacle.speed = Math.random() * (nextUp.speed_range[1] - nextUp.speed_range[0]) + nextUp.speed_range[0]
   document.body.append(obstacle)
@@ -162,15 +171,14 @@ function newObstacle() {
 // logic to detect an impact with an obstacle
 
 function impact(obstacle) {
-
   let y1 = parseInt(character.style.bottom)
   let y2 = y1 + parseInt(character.style.height)
   let x1 = parseInt(character.style.left)
   let x2 = x1 + parseInt(character.style.width)
-  let oy1 = parseInt(obstacle.style.bottom)
-  let oy2 = oy1 + parseInt(obstacle.style.height)
-  let ox1 = parseInt(obstacle.style.left)
-  let ox2 = ox1 + parseInt(obstacle.style.width)
+  let oy1 = parseInt(obstacle.style.bottom)+parseInt(obstacle.style.height)*(1.0-obstacle.target_ratio)/2.0
+  let oy2 = oy1 + parseInt(obstacle.style.height)*obstacle.target_ratio
+  let ox1 = parseInt(obstacle.style.left)+parseInt(obstacle.style.width)*(1.0-obstacle.target_ratio)/2.0
+  let ox2 = ox1 + parseInt(obstacle.style.width)*obstacle.target_ratio
   if ( ( ((x1>ox1)&&(x1<ox2)) || ((x2>ox1)&&(x2<ox2)) ) && ( ((y1<oy2)&&(y1>oy1)) || ((y2<oy2)&&(y2>oy1)) ) ) {
     return true
   }

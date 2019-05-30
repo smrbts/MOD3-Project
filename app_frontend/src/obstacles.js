@@ -8,7 +8,8 @@ let obstacleArr = [
     root: "./assets/obstacles/fire-skull.gif",
     speed_range: [4,7],
     height_range: [0.2*window.innerHeight,0.8*window.innerHeight],
-    size_range: [1.5,2.0] //multiple of origininal
+    size_range: [1.5,2.0], //multiple of origininal
+    target_ratio: 0.8
   },
   {
     name: "Deamon",
@@ -17,7 +18,8 @@ let obstacleArr = [
     root: "./assets/obstacles/deamon.gif",
     speed_range: [3,4],
     height_range: [0.2*window.innerHeight,0.8*window.innerHeight],
-    size_range: [1.5,2.5] //multiple of origininal
+    size_range: [1.5,2.5], //multiple of origininal
+    target_ratio: 0.8
   },
   {
     name: "Night-mare",
@@ -26,7 +28,8 @@ let obstacleArr = [
     root: "./assets/obstacles/night-mare.gif",
     speed_range: [5,8],
     height_range: [rockBottom-30,rockBottom],
-    size_range: [1,2] //multiple of origininal
+    size_range: [1,2], //multiple of origininal
+    target_ratio: 0.9
   },
   {
     name: "Bee",
@@ -35,6 +38,7 @@ let obstacleArr = [
     root: "./assets/obstacles/bee.gif",
     speed_range: [3,4],
     height_range: [0.2*window.innerHeight,0.8*window.innerHeight],
-    size_range: [3,4] //multiple of origininal
+    size_range: [3,4], //multiple of origininal
+    target_ratio: 0.9
   }
 ]
