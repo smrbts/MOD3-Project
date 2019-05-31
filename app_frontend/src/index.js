@@ -42,6 +42,7 @@ let cloudInterval = setInterval(function(){
 function playGame(e) {
   clearInterval(playerIntervalIntro)
   fetchUser(e.target[0].value)
+  new Sound("assets/sounds/Ludum-Dare-30- Track-4.wav");
   let playerInterval = setInterval(function(){
     if (parseInt(character.style.bottom) > (window.innerHeight - parseInt(characterHeight))) {
       character.style.bottom = `${window.innerHeight - parseInt(characterHeight)}px`

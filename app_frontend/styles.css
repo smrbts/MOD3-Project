@@ -28,20 +28,20 @@ canvas {
   z-index:-2;
 }
 
-#select-user
+select
 {
   background:rgb(253, 175, 6);
   background-image: linear-gradient(to bottom, rgb(253, 175, 6), #2079b0);
-  border-radius: 28px;
   text-shadow: 3px 2px 1px #9daef5;
   box-shadow: 6px 5px 24px #666666;
   color: navy;
   font-family: pixelFont;
   font-size: 18px;
-  padding: 19px; 
+  height: 64px;
+  padding: 19px;
 }
 
-#select-user:hover
+select:hover
 {
   background: #2079b0;
   background-image: linear-gradient(to bottom, #2079b0, rgb(253, 175, 6));
@@ -57,7 +57,7 @@ input[type=text]
   color: navy;
   font-family: pixelFont;
   font-size: 15px;
-  padding: 10px; 
+  padding: 10px;
 }
 
 #score
@@ -77,7 +77,7 @@ input[type=text]
   color: navy;
   font-family: pixelFont;
   font-size: 22px;
-  padding: 19px; 
+  padding: 19px;
 }
 
 .submit:hover
@@ -100,6 +100,7 @@ h1
 h2
 {
   color: darkblue
+  font-size: 30px
 }
 
 button
@@ -112,7 +113,7 @@ button
   color: navy;
   font-family: pixelFont;
   font-size: 16px;
-  padding: 19px; 
+  padding: 19px;
 }
 
 button:hover
@@ -140,7 +141,7 @@ button:hover
   background-size: contain, 1150px;
   background-repeat: no-repeat;
   background-position: center;
-  
+
   /* object-fit: contain; */
   z-index: 1;
   opacity: .8;
@@ -148,11 +149,12 @@ button:hover
 
 #top-10
 {
-  width: auto;
-  height: auto;
-  /* position: right center; */
-  position: absolute;
-  /*right: 5;*/
-  right:150px;
-  top:0px;
+  font-size: 15px;
+}
+
+li
+{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }

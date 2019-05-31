@@ -12,10 +12,10 @@ let obstacleArr = [
     target_ratio: 0.8
   },
   {
-    name: "Deamon",
+    name: "Demon",
     size_x: 157,
     size_y: 125,
-    root: "./assets/obstacles/deamon.gif",
+    root: "./assets/obstacles/demon.gif",
     speed_range: [3,4],
     height_range: [0.2*window.innerHeight,0.8*window.innerHeight],
     size_range: [1.5,2.5], //multiple of origininal
@@ -38,16 +38,16 @@ let obstacleArr = [
     root: "./assets/obstacles/bee.gif",
     speed_range: [6,7],
     height_range: [0.2*window.innerHeight,0.8*window.innerHeight],
-    size_range: [3,4], //multiple of origininal
+    size_range: [2,3], //multiple of origininal
     target_ratio: 0.9
   },
   {
-    name: "Deamon Flower",
+    name: "Demon Flower",
     size_x: 64,
     size_y: 64,
-    root: "./assets/obstacles/deamon-flower.gif",
+    root: "./assets/obstacles/demon-flower.gif",
     speed_range: [speed_x,speed_x],
-    height_range: [rockBottom-30,rockBottom],
+    height_range: [rockBottom-60,rockBottom-30],
     size_range: [3,4], //multiple of origininal
     target_ratio: 0.6
   }
