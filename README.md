@@ -50,6 +50,9 @@ User Notes:
 -Gothicvania Patreon’s Collection by ansimuz https://ansimuz.itch.io/gothicvania-patreon-collection
 -Jungle Asset Pack by Jesse Muguia https://jesse-m.itch.io/jungle-pack
 -SunnyLand Forset by ansimuz https://ansimuz.itch.io/sunnyland-forest
+-Demon Flower Monter by dogchicken https://opengameart.org/content/demon-flower-monster-sprite-sheet
+-Thought Soup from Monolith OST by ArcOfDream https://arcofdream.itch.io/monolith-ost
+-Free Music Loop Bundle by Tallbeard Studios https://tallbeard.itch.io/music-loop-bundle
 
 <!--
 Contributors:
