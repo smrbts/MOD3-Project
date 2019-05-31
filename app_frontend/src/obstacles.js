@@ -28,7 +28,7 @@ let obstacleArr = [
     root: "./assets/obstacles/night-mare.gif",
     speed_range: [5,8],
     height_range: [rockBottom-30,rockBottom],
-    size_range: [1,2], //multiple of origininal
+    size_range: [2,3], //multiple of origininal
     target_ratio: 0.9
   },
   {
@@ -36,9 +36,19 @@ let obstacleArr = [
     size_x: 37,
     size_y: 39,
     root: "./assets/obstacles/bee.gif",
-    speed_range: [3,4],
+    speed_range: [6,7],
     height_range: [0.2*window.innerHeight,0.8*window.innerHeight],
     size_range: [3,4], //multiple of origininal
     target_ratio: 0.9
+  },
+  {
+    name: "Deamon Flower",
+    size_x: 64,
+    size_y: 64,
+    root: "./assets/obstacles/deamon-flower.gif",
+    speed_range: [speed_x,speed_x],
+    height_range: [rockBottom-30,rockBottom],
+    size_range: [3,4], //multiple of origininal
+    target_ratio: 0.6
   }
 ]
