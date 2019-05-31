@@ -3,7 +3,8 @@ body {
   padding: 0;
   width: 100%;
   height: 80%;
-  background-color: skyblue
+  background-color: skyblue;
+  overflow: hidden;
 }
 
 header {
@@ -143,4 +144,15 @@ button:hover
   /* object-fit: contain; */
   z-index: 1;
   opacity: .8;
+}
+
+#top-10
+{
+  width: auto;
+  height: auto;
+  /* position: right center; */
+  position: absolute;
+  /*right: 5;*/
+  right:150px;
+  top:0px;
 }
