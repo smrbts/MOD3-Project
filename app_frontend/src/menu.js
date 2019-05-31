@@ -3,7 +3,28 @@ renderOnOpen()
 
 // On Open Render New Page
 
-function renderOnOpen(){
+function renderOnOpen()
+{
+  class Sound 
+  {
+    constructor(src) 
+    {
+      this.sound = document.createElement("audio");
+      this.sound.src = src;
+      this.sound.setAttribute("preload", "auto");
+      this.sound.setAttribute("controls", "none");
+      this.sound.style.display = "none";
+      document.body.appendChild(this.sound);
+      this.play = function () 
+      {
+        this.sound.play();
+      }
+      this.stop = function () {
+        this.sound.pause();
+      };
+    }
+  }
+  var myMusic = new Sound("05 Thought Soup.mp3");
   let newPage = `
     <form class="new_game_form">
       <h3>Welcome to Mountain Runner! </h3>
@@ -42,6 +63,7 @@ function renderOnOpen(){
     renderNewPage()
   })
   document.querySelector("#manipulate_users").append(editButton,newButton)
+  myMusic.play() 
 }
 
 // Populate DropDown
