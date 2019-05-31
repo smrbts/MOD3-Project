@@ -1,30 +1,11 @@
 const container = document.querySelector('.container')
+new Sound("assets/sounds/05-Thought-Soup.mp3");
 renderOnOpen()
 
 // On Open Render New Page
 
 function renderOnOpen()
 {
-  class Sound 
-  {
-    constructor(src) 
-    {
-      this.sound = document.createElement("audio");
-      this.sound.src = src;
-      this.sound.setAttribute("preload", "auto");
-      this.sound.setAttribute("controls", "none");
-      this.sound.style.display = "none";
-      document.body.appendChild(this.sound);
-      this.play = function () 
-      {
-        this.sound.play();
-      }
-      this.stop = function () {
-        this.sound.pause();
-      };
-    }
-  }
-  var myMusic = new Sound("05 Thought Soup.mp3");
   let newPage = `
     <form class="new_game_form">
       <h3>Welcome to Mountain Runner! </h3>
@@ -47,6 +28,7 @@ function renderOnOpen()
     }
     else {
       e.target.parentElement.style.display = "none"
+      document.querySelector('video').remove()
       playGame(e)
     }
   })
@@ -63,7 +45,7 @@ function renderOnOpen()
     renderNewPage()
   })
   document.querySelector("#manipulate_users").append(editButton,newButton)
-  myMusic.play() 
+
 }
 
 // Populate DropDown
@@ -148,17 +130,19 @@ function renderGameOver(user,score,killer){
   let gameOver = `
     <h3>You were killed by a ${killer}</h3>
     <h1>GAME OVER</h1>
-    <h2>Score = ${score}</h2>
+    <h2>Score = ${score}<br></h2>
     <div id="top-10">
     <div>
     `
   container.style.display = "block"
   container.innerHTML = gameOver
-  let topTenDiv = document.querySelector("#top-10")
+  let topTenDiv = document.querySelector("h2")
   let playAgain = document.querySelector("#play-again")
   let playAgainButton = document.createElement('button')
   playAgainButton.innerText = "Play Again"
   playAgainButton.addEventListener('click',(e)=>{
+    document.querySelector('video').remove()
+    new Sound("assets/sounds/05-Thought-Soup.mp3");
     renderOnOpen()
   })
   topTenDiv.append(playAgainButton)
