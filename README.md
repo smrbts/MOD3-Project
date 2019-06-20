@@ -54,9 +54,9 @@ User Notes:
 -Thought Soup from Monolith OST by ArcOfDream https://arcofdream.itch.io/monolith-ost
 -Free Music Loop Bundle by Tallbeard Studios https://tallbeard.itch.io/music-loop-bundle
 
-<!--
+
 Contributors:
 - Justin Avioli
 - Sam Roberts
 - Tom Hansen  
--->
+
